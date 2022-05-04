@@ -1,6 +1,7 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.Credentials;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,7 +13,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL("http://hub.browserstack.com/wd/hub");
+            return new URL(Credentials.getUrl());
         } catch (MalformedURLException e) {
             throw  new RuntimeException(e);
         }
@@ -23,11 +24,11 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
 
         // Set your access credentials
-        caps.setCapability("browserstack.user", "tpuretest_lSVWc2");
-        caps.setCapability("browserstack.key", "Ggd5nW19cyeGseGGn2m6");
+        caps.setCapability("browserstack.user", Credentials.getUser());
+        caps.setCapability("browserstack.key", Credentials.getPassword());
 
         // Set URL of the application under test
-        caps.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        caps.setCapability("app", Credentials.getApp());
 
         // Specify device and os_version for testing
         caps.setCapability("device", "Google Pixel 3");
@@ -38,7 +39,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         caps.setCapability("build", "browserstack-build-1");
         caps.setCapability("name", "first_test");
 
-        return new AndroidDriver(getBrowserstackUrl(), caps);
+        return new AndroidDriver( getBrowserstackUrl(), caps);
     }
 
 
