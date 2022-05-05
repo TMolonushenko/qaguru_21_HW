@@ -14,7 +14,6 @@ import static io.qameta.allure.Allure.step;
 
 public class AndroidSelenideTests extends TestBase {
 
-    @Tag("selenide")
     @Test
     void searchTest() {
 
