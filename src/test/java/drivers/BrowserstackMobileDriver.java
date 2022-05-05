@@ -13,7 +13,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL(Credentials.getUrl());
+            return new URL(Credentials.config.url());
         } catch (MalformedURLException e) {
             throw  new RuntimeException(e);
         }
@@ -24,11 +24,11 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
 
         // Set your access credentials
-        caps.setCapability("browserstack.user", Credentials.getUser());
-        caps.setCapability("browserstack.key", Credentials.getPassword());
+        caps.setCapability("browserstack.user", Credentials.config.user());
+        caps.setCapability("browserstack.key", Credentials.config.password());
 
         // Set URL of the application under test
-        caps.setCapability("app", Credentials.getApp());
+        caps.setCapability("app", Credentials.config.app());
 
         // Specify device and os_version for testing
         caps.setCapability("device", "Google Pixel 3");
